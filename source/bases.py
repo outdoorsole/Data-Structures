@@ -11,6 +11,15 @@ def decode(str_num, base):
     """
     assert 2 <= base <= 36
     # TODO: Decode number
+    result = 0;
+    for num in range(0, len(str_num)):
+        # to find the last index of the array
+        index = -1 * (num + 1)
+
+        total = int(str_num[index]) * (base ** num)
+
+        result += total
+    return result
 
 def encode(num, base):
     """
@@ -27,18 +36,24 @@ def convert(str_num, base1, base2):
     """
     assert 2 <= base1 <= 36
     assert 2 <= base2 <= 36
-    # TODO: Convert number
-
+    # TODO: Convert number 
 
 def main():
     import sys
     args = sys.argv[1:]  # Ignore script file name
-    if len(args) == 3:
+    # if len(args) == 3:
+    if len(args) == 2:
         str_num = args[0]
-        base1 = int(args[1])
-        base2 = int(args[2])
-        result = convert(str_num, base1, base2)
-        print('{} in base {} is {} in base {}'.format(str_num, base1, result, base2))
+        base = int(args[1])
+        result = decode(str_num, base)
+
+        # debug statements
+        print('This is str_num', str_num)
+        print('This is base', base)
+        print('This is the result', result)
+
+        # print result of decode function
+        print('{} in base {} is {} in base {}'.format(str_num, base, result, 10))
     else:
         print('Usage: {} number base1 base2'.format(sys.argv[0]))
 
